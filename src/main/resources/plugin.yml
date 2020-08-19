@@ -1,0 +1,6 @@
+name: Jobs
+version: ${project.version}
+main: bara.sapphire.Core
+authors: [Black_Baroness]
+depend:
+  - Vault
