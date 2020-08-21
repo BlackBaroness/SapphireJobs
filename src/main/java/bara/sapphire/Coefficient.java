@@ -42,7 +42,7 @@ public class Coefficient implements CommandExecutor {
 
     private void updateCoeff(double var) {
         // запись нового коэффициента
-        core.getConfig().set("boostCoeg", var);
+        core.getConfig().set("boostCoef", var);
         core.saveConfig();
 
         coeff = var;
