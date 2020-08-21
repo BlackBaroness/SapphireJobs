@@ -2,5 +2,8 @@ name: Jobs
 version: ${project.version}
 main: bara.sapphire.Core
 authors: [Black_Baroness]
+commands:
+  boost:
+    usage: /boost
 depend:
   - Vault

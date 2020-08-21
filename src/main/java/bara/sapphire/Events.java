@@ -12,19 +12,16 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
-
 import org.bukkit.inventory.ItemStack;
-
-
 
 public class Events implements Listener {
 
     private final Economy eco;
-    Boost boost = new Boost();
-    private final double coEff = boost.getCoeff();
+    private final Coefficient coeff;
 
-    Events(Economy eco) {
+    Events(Economy eco, Coefficient coeff) {
         this.eco = eco;
+        this.coeff = coeff;
     }
 
     @EventHandler
@@ -49,7 +46,7 @@ public class Events implements Listener {
                 return;
             }
             case QUARTZ_ORE: {
-                give(p,3);
+                give(p, 3);
                 return;
             }
             case EMERALD_ORE: {
@@ -201,6 +198,7 @@ public class Events implements Listener {
     }
 
     private void take(Player p, double i, BlockPlaceEvent e) {
+        i = i * coeff.getCoeff();
         if (eco.getBalance(p) < i) {
             p.sendMessage(ChatColor.RED + "Вы не можете сломать этот блок из-за нехватки средств.");
             e.setCancelled(true);
@@ -209,6 +207,7 @@ public class Events implements Listener {
     }
 
     private void take(Player p, double i, BlockBreakEvent e) {
+        i = i * coeff.getCoeff();
         if (eco.getBalance(p) < i) {
             p.sendMessage(ChatColor.RED + "Вы не можете поставить этот блок из-за нехватки средств.");
             e.setCancelled(true);
@@ -218,6 +217,7 @@ public class Events implements Listener {
 
 
     private void give(Player p, double money) {
-        eco.depositPlayer(p, money * coEff);
+        money = money * coeff.getCoeff();
+        eco.depositPlayer(p, money);
     }
 }
