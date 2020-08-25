@@ -14,7 +14,9 @@ public class UUIDManager implements CommandExecutor {
         if(sender.hasPermission("sapphire.admin")) {
             if(args.length <= 1) { sender.sendMessage(ChatColor.RED + "Введите Ник-нейм игрока"); } else {
                 Player target = Bukkit.getPlayer(args[0]);
-                sender.sendMessage(ChatColor.GREEN + target.getUniqueId().toString() + " - " + target.getName());
+                if(target == null) { sender.sendMessage(ChatColor.RED + "Игрок не зарегистрирован или не Онлайн"); } else {
+                    sender.sendMessage(ChatColor.GREEN + target.getUniqueId().toString() + " - " + target.getName());
+                }
             }
         } else { sender.sendMessage(ChatColor.RED + "У вас недостаточно прав для выполнения данной команды"); }
 
