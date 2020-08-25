@@ -16,6 +16,9 @@ public final class Core extends JavaPlugin {
         // регистрируем ивенты и передаём в них coefficient
         Events events = new Events(initEco(), coefficient);
         Bukkit.getPluginManager().registerEvents(events, this);
+
+        UUIDManager uuidManager = new UUIDManager();
+        getCommand("uuid").setExecutor(uuidManager);
     }
 
     private Economy initEco() {

@@ -5,5 +5,7 @@ authors: [Black_Baroness]
 commands:
   boost:
     usage: /boost
+  uuid:
+    usage: /uuid
 depend:
   - Vault
